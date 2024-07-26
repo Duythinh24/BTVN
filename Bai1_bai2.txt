@@ -1,0 +1,44 @@
+// Đề bài: Cho một mảng các số nguyên int và một số nguyên target (n), trả về chỉ số của hai số sao cho tổng của chúng bằng target.
+// Input: nums = [2,7,11,15, -2], target n = 9
+// Output: [0,1]
+void main() {
+  List<int> list = [2, 7, 11, 15, -2]; //target =9
+  sumTarget(list, 9);
+}
+
+void sumTarget(List<int> dsach, int target) {
+  if (dsach.isEmpty) {
+    print("NaN");
+  }
+  for (int i = 0; i < dsach.length; i++) {
+    for (int i1 = i + 1; i1 < dsach.length; i1++) {
+      if (dsach[i] + dsach[i1] == target) {
+        print("Vị trí thứ phần tử thứ : $i và Vị trí phần tử thứ :  $i1");
+      }
+    }
+  }
+}
+--------------------------------------------------------------------------------------------------------------------------
+// Đề bài và output, input như bài 3.
+// Nhưng sử dụng Map để tối ưu hóa perfomance.
+// Độ phức tạp O(n).
+// Hint cho bài 4:
+void main() {
+  List<int> input = [2, 7, 11, 15, -2];
+  final target = 9;
+  findPair(input, target);
+}
+
+void findPair(List<int> dsArr, int target) {
+  Map<int, int> output = {};
+  for (int i = 0; i < dsArr.length; i++) {
+    int number = dsArr[i];
+    int ketqua = target - number;
+    if (output.containsKey(ketqua)) {
+      print("$target = $ketqua + $number  Có :");
+      print(
+          "Số $ketqua  ở vị trí thứ ${output[ketqua]} và Số $number ở vị trí thứ ${i}");
+    }
+    output[number] = i;
+  }
+}
